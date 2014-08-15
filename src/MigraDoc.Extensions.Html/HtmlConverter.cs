@@ -98,6 +98,7 @@ namespace MigraDoc.Extensions.Html
             // Inline Elements
 
             nodeHandlers.Add("strong", (node, parent) => AddFormattedText(node, parent, TextFormat.Bold));
+            nodeHandlers.Add("b", (node, parent) => AddFormattedText(node, parent, TextFormat.Bold));
             nodeHandlers.Add("i", (node, parent) => AddFormattedText(node, parent, TextFormat.Italic));
             nodeHandlers.Add("em", (node, parent) => AddFormattedText(node, parent, TextFormat.Italic));
             nodeHandlers.Add("u", (node, parent) => AddFormattedText(node, parent, TextFormat.Underline));
