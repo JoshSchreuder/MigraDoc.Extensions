@@ -86,7 +86,13 @@ namespace MigraDoc.Extensions.Html
 
             nodeHandlers.Add("p", (node, parent) =>
             {
-                return ((Section)parent).AddParagraph();
+                var section = parent as Section;
+                if (section != null)
+                {
+                    return section.AddParagraph();
+                }
+
+                return parent.Section.AddParagraph();
             });
 
             // Inline Elements
@@ -191,7 +197,18 @@ namespace MigraDoc.Extensions.Html
 
         private static Paragraph GetParagraph(DocumentObject parent)
         {
-            return parent as Paragraph ?? ((Section)parent).AddParagraph();
+            if (parent is Paragraph)
+            {
+                return parent as Paragraph;
+            }
+
+            var section = parent as Section;
+            if (section != null)
+            {
+                return section.AddParagraph();
+            }
+
+            return parent.Section.AddParagraph();
         }
 
         private static Paragraph AddParagraphWithStyle(DocumentObject parent, string style) 
