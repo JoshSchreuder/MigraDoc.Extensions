@@ -126,7 +126,7 @@ namespace MigraDoc.Extensions.Html
                     ? "UnorderedList"
                     : "OrderedList";
 
-                var section = (Section)parent;
+                var section = parent as Section ?? parent.Section;
                 var isFirst = node.ParentNode.Elements("li").First() == node;
                 var isLast = node.ParentNode.Elements("li").Last() == node; 
 
